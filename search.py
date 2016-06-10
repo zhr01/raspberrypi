@@ -5,12 +5,11 @@
 """
 import heapq
 import cv2
-from pylab import *
 from scipy.cluster.vq import *
 from sklearn import preprocessing
 from sklearn.externals import joblib
 import argparse as ap
-
+import numpy as np
 
 def match(image_path):
 

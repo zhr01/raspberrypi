@@ -1,10 +1,11 @@
 import serial
+import time
 
 
 class aSerial:
     def __init__(self, p, b):
-        self.ser = serial.Serial(  # 下面这些参数根据情况修改
-            port=p,
+        self.ser = serial.Serial(      
+	    port=p,
             baudrate=b,
             parity=serial.PARITY_ODD,
             stopbits=serial.STOPBITS_TWO,
@@ -16,8 +17,20 @@ class aSerial:
         data = ''
         while flag:
             n = self.ser.inWaiting()
-            if n:
-                break;
+            if n:break
+            time.sleep(0.01)
+                # try:
+                #     data += self.ser.read(n).decode("ascii")
+                #     print(data)
+                #     break
+                # except serial.SerialException as e:
+                #     # There is no new data from serial port
+                #     # print("SerialException")
+                #     pass
+                # except TypeError as e:
+                #     # Disconnect of USB->UART occured
+                #     # print("typeError")
+                #     pass
 
         data += self.ser.read(n).decode()
         if data != '':
